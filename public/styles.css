@@ -3,24 +3,23 @@
 }
 
 .title{
-  color: white;
+  color: #3c3c3c;
 }
 .mainText{
-  color:white;
+  color:#3c3c3c;
 }
 
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: #B783C3;
+  background-color: #66eecc20;
 
 }
 
 .page-footer{
-  background-color: #9E65A9;
+  background-color: #66eecc;
 }
 main {
   flex: 1 0 auto;
 }
-    
