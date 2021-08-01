@@ -1,19 +1,13 @@
-Hello by Alessio:
-
-This is my boilerplate for creating simple new applications. 
-This boilerplate is very basic and should be used as a training ground
-
-It comprises of 
+## Dependencies ##
 Jquery for advanced manipulations
 Materialize for the UI interface
 Socket IO for real time comunications
 
+## Run ##
 
 After installing, run the server using
 
     npm start
-
-
 
 If instead, you get something like the following, someone is already
 using the default port of 8080:
