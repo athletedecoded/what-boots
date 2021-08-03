@@ -89,20 +89,19 @@
         <div id="modal1" class="modal modal-fixed-footer">
             <div class="row modal-content center-align">
                 <h1>Upload Image</h1>
-                <form class="col s12" action="/what-boots" method="post" enctype="multipart/form-data">
+                <form class="col s12" action="/upload" method="post" enctype="multipart/form-data">
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="file" accept="image/*" name="img" >
-                        <label for="password">Password</label>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input type="file" accept="image/*" name="img" >
+                            <!-- <input class="waves-effect waves-light btn" type="submit" value="upload"> -->
+                        </div>
                     </div>
-                </div>
-                
-                <div class="row">
-                    <div class="input-field col s12 center-align">
-                        <input type="submit" value="upload">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input class="waves-effect waves-light btn" type="submit" value="upload">
+                        </div>
                     </div>
-                </div>
 
                 </form>
             </div>
