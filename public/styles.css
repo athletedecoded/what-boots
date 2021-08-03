@@ -26,4 +26,10 @@ main {
 
 .btn {
   margin: 10px 2px 10px 2px;
+  background-color: #66eecc;
+  color: #3c3c3c;
 }
+
+.card {
+  width:90%;
+ }
