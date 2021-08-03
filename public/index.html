@@ -37,17 +37,17 @@
         <div class="container center-align">
             <h1 class="title">Kahlia Hogg</h1>
             <div class="row">
-                <p class="flow-text mainText">Hi my name is Kahlia and this will be my service page to deliver Sport x AI solutions</p>
+                <p class="flow-text mainText">SIT725 Services Page</p>
             </div>
 
             <!-- CARDS-->
-            <div class="row center-align" id="card-section">
+            <div class="row" id="card-section">
 
                 <!-- ABOUT ME -->
                 <div class="col s12 l6 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img width="320px" class="activator" src="assets/kahlia.jpg">
+                      <img class="activator" src="assets/kahlia.jpg">
                     </div>
                     <div class="card-content">
                       <span class="card-title grey-text text-darken-4">Hi There!</span>
@@ -65,18 +65,47 @@
                 <div class="col s12 l6 center-align">
                     <div class="card">
                       <div class="card-image waves-effect waves-block waves-light">
-                        <img width="320px" class="activator" src="assets/boots.jpg">
+                        <img class="activator" src="assets/boots.jpg">
                       </div>
                       <div class="card-content">
                         <span class="card-title grey-text text-darken-4">What Boots</span>
                         <p>What Boots is a computer vision ML model to predict your boot brand/model based on an image input.</p>
-                        <a class="waves-effect waves-light btn" href="what-boots.html"><i class="material-icons right">sports_soccer</i>Try It Out</a>
+                        <a class="waves-effect waves-light btn click-me-button modal-trigger" id="clickMeButton" data-target="modal1"><i class="material-icons right">sports_soccer</i>Try It Out</a>
                       </div>
                     </div>
-                  </div>
-
+                </div>
             </div>
+        </div>
 
+        
+        <!-- <div class="row">
+            <form action="/images/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" accept="image/*" name="img" >
+                    <input type="submit" value="upload">
+            </form>
+        </div> -->
+
+        <!-- MODAL -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="row modal-content center-align">
+                <h1>Upload Image</h1>
+                <form class="col s12" action="/what-boots" method="post" enctype="multipart/form-data">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="file" accept="image/*" name="img" >
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <input type="submit" value="upload">
+                    </div>
+                </div>
+
+                </form>
+            </div>
         </div>
 
     </main>

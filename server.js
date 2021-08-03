@@ -5,13 +5,50 @@ let app = express();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
+// Mutler
+var multer  = require('multer');
+// var { v4: uuidv4 } = require('uuid');
+var mime = require('mime-types');
 
-
+// Use Mutler and UUID to generate unique file name and append image extension before saving
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, 'uploads'))
+//     },
+//     filename: function (req, file, cb) {
+//       uid = uuidv4();
+//       cb(null, uid + '.' + mime.extension(file.mimetype))
+//     }
+// });
+   
+// var upload = multer({ storage: storage })
+var upload = multer()
 
 
 var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+
+// Endpoints
+// app.post('/upload', upload.single('img'), (req, res) => {
+app.post('/upload', upload.none(), (req, res) => {
+  if(req.file) {
+      res.json({
+          statusCode: 200,
+          filename: req.file.filename,
+          message: "Success"
+      });
+  }
+  else {
+      res.json({
+          statusCode: 400,
+          data: req.file,
+          message: "Failed to upload"
+      })
+  };
+});
 
 app.get("/test", function (request, response) {
   var user_name = request.query.user_name;

@@ -36,23 +36,108 @@
         </nav>
                 
     </header>
+
     <main>
 
-        <div class="container center-align">
+        <!-- <div class="container center-align">
             <h1 class="title">What Boots?</h1>
-            <div class="row">
 
+            <div class="row">
                 <h1>Upload Image</h1>
                 <form action="/images/upload" method="post" enctype="multipart/form-data">
                         <input type="file" accept="image/*" name="img" >
                         <input type="submit" value="upload">
                 </form>
             </div>
+        </div> -->
+
+        <div class="container center-align">
+            <h1 class="title">What Boots?</h1>
+            <div class="row">
+                <p class="flow-text mainText">Top 3 Results</p>
+            </div>
+
+            <!-- CARDS-->
+            <div class="row" id="card-section">
+
+                <!-- BOOTS-->
+                <div class="col s12 l4 center-align">
+                  <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="assets/boots.jpg">
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title grey-text text-darken-4">Boot 1</span>
+                      <!-- <p>I'm Kahlia - an athlete and AI student developing software based solutions for sport.</p> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 l4 center-align">
+                  <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="assets/boots.jpg">
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title grey-text text-darken-4">Boot 2</span>
+                      <!-- <p>I'm Kahlia - an athlete and AI student developing software based solutions for sport.</p> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 l4 center-align">
+                  <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                      <img class="activator" src="assets/boots.jpg">
+                    </div>
+                    <div class="card-content">
+                      <span class="card-title grey-text text-darken-4">Boot 3</span>
+                      <!-- <p>I'm Kahlia - an athlete and AI student developing software based solutions for sport.</p> -->
+                    </div>
+                  </div>
+                </div>
+
+                
+            </div>
         </div>
 
+        
+        <!-- <div class="row">
+            <form action="/images/upload" method="post" enctype="multipart/form-data">
+                    <input type="file" accept="image/*" name="img" >
+                    <input type="submit" value="upload">
+            </form>
+        </div> -->
 
+        <!-- MODAL -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="row modal-content center-align">
+                <h1>Upload Image</h1>
+                <form class="col s12" action="/what-boots" method="post" enctype="multipart/form-data">
 
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="file" accept="image/*" name="img" >
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        <input type="submit" value="upload">
+                    </div>
+                </div>
+
+                </form>
+            </div>
+        </div>       
+        
+    
     </main>
+
+
+
+
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
