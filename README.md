@@ -1,7 +1,10 @@
 ## Dependencies ##
-Jquery for advanced manipulations
-Materialize for the UI interface
-Socket IO for real time comunications
+* Jquery (CDN)
+* Materialize (CDN) 
+* Socket IO for real time comunications
+* Nodemon
+* body-parser
+* mutler
 
 ## Run ##
 
@@ -28,16 +31,6 @@ Once the server is running, test it by visiting the following URL in your
 browser:
 
     http://localhost:8080/
-
-Next, test it by visiting the following URL in your
-browser:
-
-    http://localhost:8080/hello
-
-When you visit the above url the content will be Hello World
-
-    Hello World
-
 
 
 
@@ -73,8 +66,7 @@ uploaded to Bluemix.  When your app is "staged" (ie, built on Bluemix during
 `cf push`), an
 `npm install` will be run there to install the required modules.  By avoiding
 sending your node modules when you push your app, your app will be uploaded
-quicker than
-if you **HAD** sent the modules.  But you can send the modules you have installed
+quicker than if you **HAD** sent the modules.  But you can send the modules you have installed
 if you like; just delete the `.cfignore` file.
 
 ---
@@ -92,8 +84,7 @@ for discussion.
 
 `LICENSE`
 
-The open source license for this sample; in this case, it's licensed under
-[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+Accessible under the [MIT License](./LICENSE).
 
 ---
 

@@ -4,51 +4,52 @@ let app = express();
 //var app = require('express')();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
+const bodyParser = require('body-parser');
 
 // Image Upload Reqs
-var multer  = require('multer');
-var { v4: uuidv4 } = require('uuid');
-var mime = require('mime-types');
-var path = require('path');
+// var multer  = require('multer');
+// var { v4: uuidv4 } = require('uuid');
+// var mime = require('mime-types');
+// var path = require('path');
 
 // Use Mutler and UUID to generate unique file name and append image extension before saving
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, 'public/uploads'))
-    },
-    filename: function (req, file, cb) {
-      uid = uuidv4();
-      cb(null, uid + '.' + mime.extension(file.mimetype))
-    }
-});
-   
-var upload = multer({ storage: storage })
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, 'public/uploads'))
+//     },
+//     filename: function (req, file, cb) {
+//       uid = uuidv4();
+//       cb(null, uid + '.' + mime.extension(file.mimetype))
+//     }
+// });
+// var upload = multer({ storage: storage })
 
 var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
 // Endpoints
-app.post('/upload', upload.single('img'), (req, res) => {
-  if(req.file) {
-      res.json({
-          statusCode: 200,
-          filename: req.file.filename,
-          message: "Success"
-      });
-  }
-  else {
-      res.json({
-          statusCode: 400,
-          data: req.file,
-          message: "Failed to upload"
-      })
-  };
-});
+// app.post('/boots', upload.single('img'), (req, res) => {
+//   if(req.file) {
+//       res.json({
+//           statusCode: 200,
+//           filename: req.file.filename,
+//           message: "Success"
+//       });
+//   }
+//   else {
+//       res.json({
+//           statusCode: 400,
+//           data: req.file,
+//           message: "Failed to upload"
+//       })
+//   };
+// });
 
-app.get("/test", function (request, response) {
+app.get("/api/images", function (request, response) {
   var user_name = request.query.user_name;
   response.end("Hello " + user_name + "!");
 });
