@@ -2,9 +2,10 @@
 * Jquery (CDN)
 * Materialize (CDN) 
 * Socket IO for real time comunications
-* Nodemon
+* nodemon
 * body-parser
 * mutler
+* mongodb
 
 ## Run ##
 

@@ -5,6 +5,11 @@ let app = express();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
+const mongoClient = require('mongodb').MongoClient;
+
+// DB Connection
+const uri ="mongodb+srv://sit725-2021:<pw725>@sit725.0imd3.mongodb.net/SIT725?retryWrites=true&w=majority"
+const client = new MongoClient(uri,{ useNewUrlParser : true });
 
 // Image Upload Reqs
 // var multer  = require('multer');
