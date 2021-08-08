@@ -7,9 +7,30 @@ let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 const mongoClient = require('mongodb').MongoClient;
 
-// DB Connection
-const uri ="mongodb+srv://sit725-2021:<pw725>@sit725.0imd3.mongodb.net/SIT725?retryWrites=true&w=majority"
-const client = new MongoClient(uri,{ useNewUrlParser : true });
+// DB Config
+const uri ="mongodb+srv://sit725-2021:pw725@sit725.0imd3.mongodb.net/sit725?retryWrites=true&w=majority"
+const client = new mongoClient(uri,{ useNewUrlParser : true });
+
+const createCollection = (collectionName) => {
+  client.connect((err,db) => {
+    projectCollection = client.db().collection(collectionName);
+    if (!err) {
+      console.log("MongoDB Connected...");
+    }
+    else {
+      console.log("DB error", err);
+      process.exit(1);
+    }
+  })
+}
+
+const insertProjects = (project, callback) => {
+  projectCollection.insert(project, callback);
+}
+
+const getProjects = (callback) => {
+  projectCollection.find({}).toArray(callback);
+}
 
 // Image Upload Reqs
 // var multer  = require('multer');
@@ -35,6 +56,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
+
+
 
 // Endpoints
 // app.post('/boots', upload.single('img'), (req, res) => {
@@ -75,6 +98,7 @@ io.on('connection', (socket) => {
 
 http.listen(port,()=>{
   console.log("Listening on port ", port);
+  createCollection('boots');
 });
 
 //this is only needed for Cloud foundry 
