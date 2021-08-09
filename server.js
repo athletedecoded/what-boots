@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 let express = require("express");
 let app = express();
 
@@ -9,7 +11,7 @@ const mongoClient = require('mongodb').MongoClient;
 let projectCollection;
 
 // MongoDB Config
-const uri ="mongodb+srv://sit725-2021:pw725@sit725.0imd3.mongodb.net/sit725?retryWrites=true&w=majority"
+const uri = process.env.MONGO_URI;
 const client = new mongoClient(uri,{ useNewUrlParser : true });
 
 const createCollection = (collectionName) => {
