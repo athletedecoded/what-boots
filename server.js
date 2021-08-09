@@ -24,19 +24,23 @@ const createCollection = (collectionName) => {
   })
 }
 
-const insertProjects = (project, callback) => {
-  projectCollection.insert(project, callback);
+const insertBoots = (boot, callback) => {
+  projectCollection.insert(boot, callback);
 }
 
-const getProjects = (callback) => {
+const getBoots = (callback) => {
   projectCollection.find({}).toArray(callback);
 }
 
-// Image Upload Reqs
-// var multer  = require('multer');
-// var { v4: uuidv4 } = require('uuid');
-// var mime = require('mime-types');
-// var path = require('path');
+// Image Processing
+var multer  = require('multer');
+var upload = multer({ dest: 'public/uploads/' });
+
+
+var { v4: uuidv4 } = require('uuid');
+var mime = require('mime-types');
+var path = require('path');
+var fs = require('fs');
 
 // Use Mutler and UUID to generate unique file name and append image extension before saving
 // var storage = multer.diskStorage({
@@ -58,28 +62,36 @@ app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 
-
 // Endpoints
-// app.post('/boots', upload.single('img'), (req, res) => {
-//   if(req.file) {
-//       res.json({
-//           statusCode: 200,
-//           filename: req.file.filename,
-//           message: "Success"
-//       });
-//   }
-//   else {
-//       res.json({
-//           statusCode: 400,
-//           data: req.file,
-//           message: "Failed to upload"
-//       })
-//   };
-// });
+app.post('/api/boots', upload.single('boot-img'), (req, res) => {
+  	if(req.file) {
+		fType = req.file.mimetype
+    	// Generate unique fileID (inc. extension)
+		uid = uuidv4();
+		id = uid + '.' + mime.extension(fType)
 
-app.get("/api/images", function (request, response) {
-  var user_name = request.query.user_name;
-  response.end("Hello " + user_name + "!");
+      // Add filename to DB
+      // insertBoots(req.file.filename);
+
+      res.json({
+          statusCode: 200,
+          ID: fileID,
+        //   filetype: fType,
+        //   data: data,
+          message: "Success"
+      });
+  }
+  else {
+      res.json({
+          statusCode: 400,
+          data: req.file,
+          message: "Failed to upload"
+      })
+  };
+});
+
+app.get("/api/boots", function (req, res) {
+  // getBoots();
 });
 
 
