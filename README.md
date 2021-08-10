@@ -4,8 +4,9 @@
 * Socket IO for real time comunications
 * nodemon
 * body-parser
-* mutler
+* multer
 * mongodb
+* aws-sdk for S3 image storage
 
 ## Run ##
 

@@ -39,6 +39,7 @@ const getBoots = (callback) => {
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' });
 
+const { uploadFile } = require('./s3')
 
 var port = process.env.PORT || 8080;
 
@@ -48,9 +49,15 @@ app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 // Endpoints
-app.post('/api/boots', upload.single('boot-img'), (req, res) => {
-  	if(req.file) {
-		console.log(req.file)    
+app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
+	if(req.file) {
+		const result = await uploadFile(req.file);
+		console.log(result);
+		res.json({
+			statusCode: 200,
+			data: result,
+			message: "Success: Image uploaded to S3"
+		}) 
 	}
 	else {
 		res.json({
