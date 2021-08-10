@@ -39,7 +39,7 @@ const getBoots = (callback) => {
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' });
 
-const { uploadFile } = require('./s3')
+const { uploadFile, getFileStream } = require('./s3')
 
 var port = process.env.PORT || 8080;
 
@@ -55,7 +55,7 @@ app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
 		console.log(result);
 		res.json({
 			statusCode: 200,
-			data: result,
+			url: result,
 			message: "Success: Image uploaded to S3"
 		}) 
 	}
@@ -67,6 +67,28 @@ app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
 		})
 	};
 });
+
+app.get('/images/:key', (req,res) => {
+	const key = req.params.key;
+	const readStream = getFileStream(key)
+	// readStream.pipe(res);
+
+
+	if (readStream) {
+		console.log(readStream)
+		res.json({
+			statusCode: 200,
+			data: readStream,
+			message: "Success: Image retrieved"
+		})
+	}
+	else {
+		res.json({
+			statusCode: 400,
+			message: "Failure: can not retrieve image by key: " + key
+		})
+	}
+})
 
 app.get("/api/boots", function (req, res) {
 	getBoots((err,result) => {
