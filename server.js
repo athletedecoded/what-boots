@@ -2,44 +2,20 @@ require('dotenv').config();
 
 let express = require("express");
 let app = express();
+let s3Connect = require("./s3Connect.js");
+let mongoConnect = require("./mongoConnect.js")
 
-//var app = require('express')();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
-const mongoClient = require('mongodb').MongoClient;
-let projectCollection;
 
-// MongoDB Config
-const uri = process.env.MONGO_URI;
-const client = new mongoClient(uri,{ useNewUrlParser : true });
 
-const createCollection = (collectionName) => {
-  client.connect((err,db) => {
-    projectCollection = client.db().collection(collectionName);
-    if (!err) {
-      console.log("MongoDB Connected...");
-    }
-    else {
-      console.log("DB error", err);
-      process.exit(1);
-    }
-  })
-}
-
-const insertBoot = (boot, callback) => {
-  	projectCollection.insert(boot, callback);
-}
-
-const getBoots = (callback) => {
-  	projectCollection.find({}).toArray(callback);
-}
 
 // Image Processing
 const multer = require('multer');
 const upload = multer({ dest: 'public/uploads/' });
 
-const { uploadFile, getFileStream } = require('./s3')
+const { uploadFile, getFileStream } = require('./s3Connect')
 
 var port = process.env.PORT || 8080;
 
@@ -143,7 +119,7 @@ io.on('connection', (socket) => {
 
 http.listen(port,()=>{
   console.log("Listening on port ", port);
-  createCollection('allBoots');
+//   createCollection('allBoots');
 });
 
 //this is only needed for Cloud foundry 
