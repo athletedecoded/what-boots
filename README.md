@@ -9,6 +9,9 @@
 * aws-sdk for S3 image storage
 
 ## Run ##
+Install package.json packages using
+
+    npm install
 
 After installing, run the server using
 

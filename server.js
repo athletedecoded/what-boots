@@ -9,6 +9,7 @@ let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
+let projectsRoute = require('./routes/projects')
 
 
 // Image Processing
