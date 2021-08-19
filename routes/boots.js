@@ -4,7 +4,7 @@ var Controllers = require("../controllers");
 
 
 router.get('/', (req, res) => {
-    Controllers.projectsController.getProjects(res);
+    Controllers.bootController.getBoots(res);
 
     // get projects from database
     //getProjects(res)
@@ -12,7 +12,13 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-    Controllers.projectsController.createProject(req.body, res)
+    Controllers.bootsController.addBoot(req.body, res)
+
+    // Add to mongoDB
+    // {img_uuid,s3_key, s3_url}
+
+    // Add to S3
+    
     /*console.log('New project posted')
     console.log('body', req.body)
     let project = req.body;

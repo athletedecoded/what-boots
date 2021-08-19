@@ -1,29 +1,29 @@
-const getImage = (key) => {
-	$.get(`/images/${key}`,(res) => {
-		if (res.statusCode == 200){
-			console.log(res);
-			// listBoots(res.data);
-		}
-		else {
-			console.log(res)
-		}
-	});
-};
+const addBootToDB = (boot) => {
+    $.ajax({
+        url: '/api/boots',
+        data: boot,
+        type: 'POST',
+        success: (result) => {
+            alert(result.message);
+            location.reload();
+        }
+    })
+}
 
+const submitForm = () => {
+    let formData = {};
+    formData.title = $('#title').val();
+    formData.image = $('#image').val();
+    formData.link = $('#link').val();
+    formData.description = $('#description').val();
 
-// connect to the socket
+    console.log("Form Data Submitted: ", formData);
+    addProjectToApp(formData);
+}
 
-// let socket = io();
-
-
-// socket.on('number', (msg) => {
-//     console.log('Random number: ' + msg);
-// })
 
 $(document).ready(function(){
   console.log('Ready');
 
   $('.modal').modal();
-
-  getImage("8b65a807a354d2aef7ab96e4193bd6d9")
 });

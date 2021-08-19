@@ -1,4 +1,4 @@
 module.exports={
-    mongoService:require('./mongoService'),
-    s3Service:require('./s3Service')
+    bootService:require('./bootService'),
+    predService:require('./predService')
 }
