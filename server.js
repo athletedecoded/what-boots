@@ -13,8 +13,25 @@ const bodyParser = require('body-parser');
 
 
 // Image Processing
+var { v4: uuidv4 } = require('uuid');
+var mime = require('mime-types');
+var path = require('path');
+
 const multer = require('multer');
-const upload = multer({ dest: 'public/uploads/' });
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, 'public/uploads'))
+    },
+    filename: function (req, file, cb) {
+      uid = uuidv4();
+      cb(null, uid + '.' + mime.extension(file.mimetype))
+    }
+});
+   
+var upload = multer({ storage: storage })
+
+// const upload = multer({ dest: 'public/uploads/' });
 
 const { uploadFile, getFileStream } = require('./s3Connect')
 
