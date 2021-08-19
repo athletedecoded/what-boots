@@ -28,24 +28,23 @@ app.use(bodyParser.json());
 // Endpoints
 app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
 	console.log(req.file)
+	if(req.file) {
+		const result = await uploadFile(req.file);
+		console.log(result);
+		res.json({
+			statusCode: 200,
+			url: result,
+			message: "Success: Image uploaded to S3"
+		}) 
+	}
 
-	// if(req.file) {
-	// 	const result = await uploadFile(req.file);
-	// 	console.log(result);
-	// 	res.json({
-	// 		statusCode: 200,
-	// 		url: result,
-	// 		message: "Success: Image uploaded to S3"
-	// 	}) 
-	// }
-
-	// else {
-	// 	res.json({
-	// 		statusCode: 400,
-	// 		data: req.file,
-	// 		message: "Failed to upload"
-	// 	})
-	// };
+	else {
+		res.json({
+			statusCode: 400,
+			data: req.file,
+			message: "Failed to upload"
+		})
+	};
 });
 
 // app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
