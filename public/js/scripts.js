@@ -1,29 +1,38 @@
-const addBootToDB = (boot) => {
+const addBootToDB = (bootData) => {
     $.ajax({
+        enctype:'multipart/form-data',
         url: '/api/boots',
-        data: boot,
+        data: bootData,
         type: 'POST',
+        contentType:false,
+        processData:false,
         success: (result) => {
             alert(result.message);
-            location.reload();
+            // location.reload();
+        },
+        error: (err) => {
+            alert(err.message);
+            // location.reload();
         }
     })
 }
 
 const submitForm = () => {
-    let formData = {};
-    formData.title = $('#title').val();
-    formData.image = $('#image').val();
-    formData.link = $('#link').val();
-    formData.description = $('#description').val();
+    let bootImg = $('#bootImg')[0].files[0];
+    var formData = new FormData();
+    formData.append("bootImg", bootImg);
 
     console.log("Form Data Submitted: ", formData);
-    addProjectToApp(formData);
+    addBootToDB(formData);
 }
 
 
 $(document).ready(function(){
   console.log('Ready');
+
+  $('#formSubmit').click(()=>{
+    submitForm();
+  });
 
   $('.modal').modal();
 });

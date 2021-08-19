@@ -9,7 +9,7 @@ let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
-let projectsRoute = require('./routes/projects')
+// let projectsRoute = require('./routes/projects')
 
 
 // Image Processing
@@ -26,24 +26,50 @@ app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
 // Endpoints
-app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
-	if(req.file) {
-		const result = await uploadFile(req.file);
-		console.log(result);
-		res.json({
-			statusCode: 200,
-			url: result,
-			message: "Success: Image uploaded to S3"
-		}) 
-	}
-	else {
-		res.json({
-			statusCode: 400,
-			data: req.file,
-			message: "Failed to upload"
-		})
-	};
+app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
+	console.log(req.file)
+
+	// if(req.file) {
+	// 	const result = await uploadFile(req.file);
+	// 	console.log(result);
+	// 	res.json({
+	// 		statusCode: 200,
+	// 		url: result,
+	// 		message: "Success: Image uploaded to S3"
+	// 	}) 
+	// }
+
+	// else {
+	// 	res.json({
+	// 		statusCode: 400,
+	// 		data: req.file,
+	// 		message: "Failed to upload"
+	// 	})
+	// };
 });
+
+// app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
+// 	if(req.file) {
+// 		const result = await uploadFile(req.file);
+// 		console.log(result);
+// 		res.json({
+// 			statusCode: 200,
+// 			url: result,
+// 			message: "Success: Image uploaded to S3"
+// 		}) 
+// 	}
+// 	else {
+// 		res.json({
+// 			statusCode: 400,
+// 			data: req.file,
+// 			message: "Failed to upload"
+// 		})
+// 	};
+// });
+
+app.post('/api/test',(req,res) => {
+    console.log("New boot added", req.body)
+})
 
 app.get('/images/:key', (req,res) => {
 	const key = req.params.key;
