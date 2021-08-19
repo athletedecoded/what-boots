@@ -2,38 +2,15 @@ require('dotenv').config();
 
 let express = require("express");
 let app = express();
-let s3Connect = require("./s3Connect.js");
 let mongoConnect = require("./mongoConnect.js")
+const { uploadFile, getFileStream } = require('./s3Connect')
 
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
-// let projectsRoute = require('./routes/projects')
-
-
-// Image Processing
-var { v4: uuidv4 } = require('uuid');
-var mime = require('mime-types');
-var path = require('path');
-
-const multer = require('multer');
-
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, path.join(__dirname, 'public/uploads'))
-    },
-    filename: function (req, file, cb) {
-      uid = uuidv4();
-      cb(null, uid + '.' + mime.extension(file.mimetype))
-    }
-});
-   
-var upload = multer({ storage: storage })
-
-// const upload = multer({ dest: 'public/uploads/' });
-
-const { uploadFile, getFileStream } = require('./s3Connect')
+let bootsRoute = require('./routes/boots');
+app.use('/api/boots', bootsRoute)
 
 var port = process.env.PORT || 8080;
 
@@ -42,29 +19,28 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
+// Image Processing
+// var { v4: uuidv4 } = require('uuid');
+// var mime = require('mime-types');
+// var path = require('path');
+
+// const multer = require('multer');
+
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, path.join(__dirname, 'public/uploads'))
+//     },
+//     filename: function (req, file, cb) {
+//       uid = uuidv4();
+//       cb(null, uid + '.' + mime.extension(file.mimetype))
+//     }
+// });
+   
+// var upload = multer({ storage: storage })
+
 // Endpoints
-app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
-	console.log(req.file)
-	if(req.file) {
-		const result = await uploadFile(req.file);
-		console.log(result);
-		res.json({
-			statusCode: 200,
-			url: result,
-			message: "Success: Image uploaded to S3"
-		}) 
-	}
-
-	else {
-		res.json({
-			statusCode: 400,
-			data: req.file,
-			message: "Failed to upload"
-		})
-	};
-});
-
-// app.post('/api/boots', upload.single('boot-img'), async (req, res) => {
+// app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
+// 	console.log(req.file)
 // 	if(req.file) {
 // 		const result = await uploadFile(req.file);
 // 		console.log(result);
@@ -74,6 +50,7 @@ app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
 // 			message: "Success: Image uploaded to S3"
 // 		}) 
 // 	}
+
 // 	else {
 // 		res.json({
 // 			statusCode: 400,
@@ -83,9 +60,6 @@ app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
 // 	};
 // });
 
-app.post('/api/test',(req,res) => {
-    console.log("New boot added", req.body)
-})
 
 app.get('/images/:key', (req,res) => {
 	const key = req.params.key;

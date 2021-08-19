@@ -1,8 +1,7 @@
-let client = require("../dbConnect");
-let projectsCollection;
+let client = require("../mongoConnect");
+let bootsCollection;
 setTimeout(() => {
-    projectsCollection = client.mongoClient.db("deakinCrowds").collection("projects");
-
+    bootsCollection = client.mongodbClient.db("sit725").collection("allBoots");
 }, 2000)
 
 const getAllProjects = (res) => {

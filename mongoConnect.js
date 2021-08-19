@@ -4,27 +4,37 @@ require('dotenv').config();
 const mongoClient = require('mongodb').MongoClient;
 const uri = process.env.MONGO_URI;
 const mongodbClient = new mongoClient(uri,{ useNewUrlParser : true });
-let projectCollection;
+let bootsCollection;
 
-const createCollection = (collectionName) => {
-  mongodbClient.connect((err,db) => {
-    projectCollection = mongodbClient.db().collection(collectionName);
-    if (!err) {
-      console.log("MongoDB Connected...");
-    }
-    else {
-      console.log("DB error", err);
-      process.exit(1);
-    }
-  })
-}
+// const createCollection = (collectionName) => {
+//   mongodbClient.connect((err,db) => {
+//     bootsCollection = mongodbClient.db().collection(collectionName);
+//     if (!err) {
+//       console.log("MongoDB Connected...");
+//     }
+//     else {
+//       console.log("DB error", err);
+//       process.exit(1);
+//     }
+//   })
+// }
+
+mongodbClient.connect((err,db) => {
+  if (!err) {
+    console.log("MongoDB Connected...");
+  }
+  else {
+    console.log("DB error", err);
+    process.exit(1);
+  }
+});
 
 const insertBoot = (boot, callback) => {
-  	projectCollection.insert(boot, callback);
+  	bootsCollection.insert(boot, callback);
 }
 
-const getBoots = (callback) => {
-  	projectCollection.find({}).toArray(callback);
+const getAllBoots = (callback) => {
+  	bootsCollection.find({}).toArray(callback);
 }
 
 

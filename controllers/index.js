@@ -1,4 +1,4 @@
 module.exports={
-    bootController:require('./bootController'),
+    bootsController:require('./bootsController'),
     predController:require('./predController')
 }
