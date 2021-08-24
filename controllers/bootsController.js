@@ -1,14 +1,13 @@
 let Service = require("../services");
 
-const getBoots = (res) => {
-    console.log('controller ')
-    Service.bootService.getBoots(res)
+const getAllBoots = (res) => {
+    Service.bootsService.getAllBoots(res)
 }
 
 const addBoot = (data, res) => {
-    Service.bootService.insertBoot(data,res)
+    Service.bootsService.insertBoot(data,res)
 }
 
 module.exports = {
-    getBoots, addBoot
+    getAllBoots, addBoot
 }

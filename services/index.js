@@ -1,4 +1,4 @@
 module.exports={
-    bootService:require('./bootService'),
+    bootsService:require('./bootsService'),
     predService:require('./predService')
 }

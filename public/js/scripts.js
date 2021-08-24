@@ -7,8 +7,10 @@ const addBootToDB = (bootData) => {
         contentType:false,
         processData:false,
         success: (result) => {
-            alert(result.message);
-            // location.reload();
+            let url = result.url
+            console.log(result.message);
+            console.log(url); // Need to send url to tensorflow model for prediction
+            location.reload();
         },
         error: (err) => {
             alert(err.message);

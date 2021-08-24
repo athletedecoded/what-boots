@@ -19,106 +19,64 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-// Image Processing
-// var { v4: uuidv4 } = require('uuid');
-// var mime = require('mime-types');
-// var path = require('path');
+// app.get('/images/:key', (req,res) => {
+// 	const key = req.params.key;
+// 	const readStream = getFileStream(key)
+// 	// readStream.pipe(res);
 
-// const multer = require('multer');
 
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, path.join(__dirname, 'public/uploads'))
-//     },
-//     filename: function (req, file, cb) {
-//       uid = uuidv4();
-//       cb(null, uid + '.' + mime.extension(file.mimetype))
-//     }
-// });
-   
-// var upload = multer({ storage: storage })
-
-// Endpoints
-// app.post('/api/boots', upload.single('bootImg'), async (req, res) => {
-// 	console.log(req.file)
-// 	if(req.file) {
-// 		const result = await uploadFile(req.file);
-// 		console.log(result);
+// 	if (readStream) {
+// 		console.log(readStream)
 // 		res.json({
 // 			statusCode: 200,
-// 			url: result,
-// 			message: "Success: Image uploaded to S3"
-// 		}) 
+// 			data: readStream,
+// 			message: "Success: Image retrieved"
+// 		})
 // 	}
-
 // 	else {
 // 		res.json({
 // 			statusCode: 400,
-// 			data: req.file,
-// 			message: "Failed to upload"
+// 			message: "Failure: can not retrieve image by key: " + key
 // 		})
-// 	};
+// 	}
+// })
+
+// app.get("/api/boots", function (req, res) {
+// 	getBoots((err,result) => {
+// 		if (err) {
+// 			res.json({
+// 				statusCode: 400,
+// 				message: err
+// 			})
+// 		}
+// 		else {
+// 			res.json({
+// 				statusCode: 200,
+// 				message: "Success: objects retrieved",
+// 				data: result
+				
+// 			})
+// 		}
+// 	});
 // });
 
-
-app.get('/images/:key', (req,res) => {
-	const key = req.params.key;
-	const readStream = getFileStream(key)
-	// readStream.pipe(res);
-
-
-	if (readStream) {
-		console.log(readStream)
-		res.json({
-			statusCode: 200,
-			data: readStream,
-			message: "Success: Image retrieved"
-		})
-	}
-	else {
-		res.json({
-			statusCode: 400,
-			message: "Failure: can not retrieve image by key: " + key
-		})
-	}
-})
-
-app.get("/api/boots", function (req, res) {
-	getBoots((err,result) => {
-		if (err) {
-			res.json({
-				statusCode: 400,
-				message: err
-			})
-		}
-		else {
-			res.json({
-				statusCode: 200,
-				message: "Success: objects retrieved",
-				data: result
-				
-			})
-		}
-	});
-});
-
-app.post('/api/seed', (req,res) => {
-	var newBoot = req.body;
-	insertBoot(newBoot,(err,result) => {
-		if (err) {
-			res.json({
-				statusCode: 400,
-				message: err
-			})
-		}
-		else {				
-			res.json({
-				statusCode: 200,
-				message: "Success: object added"
-			});
-		}
-	}); 
-})
+// app.post('/api/seed', (req,res) => {
+// 	var newBoot = req.body;
+// 	insertBoot(newBoot,(err,result) => {
+// 		if (err) {
+// 			res.json({
+// 				statusCode: 400,
+// 				message: err
+// 			})
+// 		}
+// 		else {				
+// 			res.json({
+// 				statusCode: 200,
+// 				message: "Success: object added"
+// 			});
+// 		}
+// 	}); 
+// })
 
 
 //socket test
