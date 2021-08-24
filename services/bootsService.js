@@ -12,32 +12,29 @@ const getAllBoots = (res) => {
     })
 }
 
-const insertBoot = async (req, res) => {
-    // Insert data into mongDB
-
-
-    
+const uploadBootImg = async (req, res) => {
     if(req) {
         // Upload image to S3
         const result = await uploadFile(req);
-
+        console.log('Boot uploaded to S3', result)
         // If image uploaded to S3
         if(result) {
             // Add data to mongoDB
-            let bootData = {
-                imageID: result.Key,
-                url: result.Location
-            }
-            bootsCollection.insertOne(bootData, (err, result) => {
-                console.log('Boot Inserted to MongoDB', result)
-                // res.send({ result: 200 })
-            });
+            // let bootData = {
+            //     imageID: result.Key,
+            //     url: result.Location
+            // }
+            // bootsCollection.insertOne(bootData, (err, result) => {
+            //     console.log('Boot Inserted to MongoDB', result)
+            //     // res.send({ result: 200 })
+            // });
 
-            res.json({
-                statusCode: 200,
-                url: bootData.url,
-                message: "Success: Image uploaded to S3. Data inserted to mongoDB."
-            }) 
+            return result
+            // res.json({
+            //     statusCode: 200,
+            //     url: result.Location,
+            //     message: "Success: Image uploaded to S3. Data inserted to mongoDB."
+            // }) 
         }
         else {
             res.json({
@@ -58,6 +55,18 @@ const insertBoot = async (req, res) => {
     };
 }
 
+const insertBootData = (req, res) => {
+    // Add data to mongoDB
+    let bootData = {
+        imageID: req.imgID,
+        url: req.url
+    }
+    bootsCollection.insertOne(bootData, (err, result) => {
+        console.log('Boot Inserted to MongoDB', result)
+        // res.send({ result: 200 })
+    });
+}
+
 module.exports = {
-    getAllBoots, insertBoot
+    getAllBoots, uploadBootImg, insertBootData
 }

@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', upload.single('bootImg'), (req, res) => {
-    Controllers.bootsController.addBoot(req.file, res)
+    Controllers.bootsController.classifyBoot(req.file, res)
 })
 
 

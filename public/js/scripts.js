@@ -1,4 +1,4 @@
-const addBootToDB = (bootData) => {
+const uploadBoot = (bootData) => {
     $.ajax({
         enctype:'multipart/form-data',
         url: '/api/boots',
@@ -7,9 +7,7 @@ const addBootToDB = (bootData) => {
         contentType:false,
         processData:false,
         success: (result) => {
-            let url = result.url
             console.log(result.message);
-            console.log(url); // Need to send url to tensorflow model for prediction
             location.reload();
         },
         error: (err) => {
@@ -25,7 +23,7 @@ const submitForm = () => {
     formData.append("bootImg", bootImg);
 
     console.log("Form Data Submitted: ", formData);
-    addBootToDB(formData);
+    uploadBoot(formData);
 }
 
 

@@ -3,12 +3,12 @@ var router = express.Router();
 var Controllers = require("../controllers");
 
 
-router.get('/', (req, res) => {
-    Controllers.predController.getPreds(res);
-    // Query boot url in TF model
+// router.get('/', (req, res) => {
+//     Controllers.predController.getPreds(res);
+//     // Query boot url in TF model
 
-    // Add prediction results to boot id in Mongodb
-})
+//     // Add prediction results to boot id in Mongodb
+// })
 
 // router.post('/', (req, res) => {
     

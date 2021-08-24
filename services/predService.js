@@ -1,25 +1,23 @@
 let client = require("../mongoConnect");
 let bootsCollection;
 setTimeout(() => {
-    bootsCollection = client.mongodbClient.db("sit725").collection("allBoots");
+    bootsCollection = client.mongodbClient.db("sit725").collection("queryBoots");
 }, 2000)
 
-const getAllProjects = (res) => {
-    projectsCollection.find().toArray(function (err, result) {
-        if (err) throw err;
-        res.send(result)
-    })
-}
+// const getPrediction = async (req, res) => {
+//     if(req) {
+//         // Send req (image url) to TF model endpoint
+//         // const result = await tfModel(req);
 
-const insertProject = (project, res) => {
-    projectsCollection.insertOne(project, (err, result) => {
-        console.log('Project Inserted', result)
-        res.send({ result: 200 })
-    })
-}
-
+//         // Response object should be labels and probabilities
+//         // Call insert prediction
+//         projectsCollection.find().toArray(function (err, result) {
+//         if (err) throw err;
+//         res.send(result)
+//     })
+// }
 
 
-module.exports = {
-    getAllProjects, insertProject
-}
+// module.exports = {
+//     getAllProjects, insertProject
+// }

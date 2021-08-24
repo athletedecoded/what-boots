@@ -1,8 +1,7 @@
 let Service = require("../services");
 
-// const uploadImage = (res) => {
-//     console.log('controller ')
-//     Service.ProjectService.getAllProjects(res)
+// const getPreds = (res) => {
+//     Service.predService.getPrediction(res)
 // }
 
 // const getImage = (data, res) => {
