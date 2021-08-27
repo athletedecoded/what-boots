@@ -8,10 +8,6 @@
   margin-right: 0.75rem;
 }
 
-.mainText{
-  
-}
-
 body {
   font-family: 'Roboto', sans-serif;
   display: flex;
@@ -44,8 +40,13 @@ main {
 }
 
 .card .card-content {
-  font-size: 18px;
+    font-size: 18px;
 }
+
+.card .card-text {
+    font-size: 20px;
+}
+
 
 #logo {
   color:#3c3c3c;

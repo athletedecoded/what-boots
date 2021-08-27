@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,28 +14,29 @@
     <!-- Materialize icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+
     <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper" style=" background-color: #3c3c3c;">
-                <a href="./" class="brand-logo" style="height: 100%;">
-                    <i class="material-icons" style="color:#66eecc; font-size: 40px; height: 100%;padding-top: 5px; padding-left: 20px;" >code</i>
-                    <!-- sports_soccer
-                    <img src="images/ale.jpg" alt="" class="circle responsive-img"
-                        style="height: 100%;padding-top: 5px; padding-left: 15px;"> notice the "circle" class -->
-
-                </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="./what-boots.html">What Boots?</a></li>
-                    <li><a href="https://www.linkedin.com/in/kahliahogg"><img src="images/linkedin.png" height="20px"></a></li>
-                </ul>
-            </div>
-        </nav>
-                
-    </header>
+  <header>
+    <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left">
+                <li>
+                    <a href="./" class="brand-logo" style="height: 100%;">
+                        <i id="logo" class="material-icons">sports_soccer</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+            
+  </header>
 
     <main>
 
@@ -135,14 +136,20 @@
 
 
     <footer class="page-footer">
-        <div class="footer-copyright">
-            <div class="container">
-                © 2020 Copyright AlexNexus
-                <a class="grey-text text-lighten-4 right" href="https://github.com/alexbonti/node-material"><img
-                        src="images/git-logo.svg" style="height: 20px; padding-right: 15px;"></i>Boiler plate here !</a>
-            </div>
-        </div>
-    </footer>
+      <div class="container">
+          <div class="row valign-wrapper">
+              <div class="col l6 s12">
+                  <span><a href="https://www.linkedin.com/in/kahliahogg" target="_blank"><img class="footer-links" src="images/linkedin.png"></a></span>
+                  <span><a href="https://github.com/athletedecoded" target="_blank"><img class="footer-links" src="images/git-logo.svg"></a></span>
+                  <span><a href="https://athletedecoded.com" target="_blank"><img class="footer-links" src="images/web.jpg"></a></span>
+              </div>
+
+              <div class="col l6 s12">
+                  <div class="right-align"> © 2021 Copyright Kahlia Hogg</div>
+              </div>
+          </div>
+      </div>
+  </footer>>
 
     <!-- socket IO Served by the server -->
     <script src="/socket.io/socket.io.js"></script>

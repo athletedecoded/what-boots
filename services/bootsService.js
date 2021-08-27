@@ -61,10 +61,19 @@ const insertBootData = (req, res) => {
         imageID: req.imgID,
         url: req.url
     }
+    
     bootsCollection.insertOne(bootData, (err, result) => {
-        console.log('Boot Inserted to MongoDB', result)
-        // res.send({ result: 200 })
+        if(result) {
+            console.log('Boot Inserted to MongoDB', result)
+            res.json({
+                statusCode: 200,
+                url: result.Location,
+                message: "Success: Image uploaded to S3. Data inserted to mongoDB."
+            }) 
+        }
     });
+
+    
 }
 
 module.exports = {
