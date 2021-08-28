@@ -2,6 +2,7 @@
   "name": "kahlia-sit725",
   "version": "0.0.0",
   "dependencies": {
+    "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.8.0",
     "@tensorflow/tfjs-node": "^3.8.0",
     "aws-sdk": "^2.964.0",
