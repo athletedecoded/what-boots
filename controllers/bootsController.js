@@ -12,8 +12,8 @@ const classifyBoot = async (imgData, res) => {
         imgID: result.key
     }
     
-    // Call TF model using returned URL
-    // Service.predService.getPreds(bootData.url)
+    // Call TF model using server img path
+    Service.predService.getPreds(bootData.imgID)
 
     // Upload data to mongoDB
     Service.bootsService.insertBootData(bootData,res)

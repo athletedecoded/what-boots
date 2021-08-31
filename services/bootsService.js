@@ -19,22 +19,7 @@ const uploadBootImg = async (req, res) => {
         console.log('Boot uploaded to S3', result)
         // If image uploaded to S3
         if(result) {
-            // Add data to mongoDB
-            // let bootData = {
-            //     imageID: result.Key,
-            //     url: result.Location
-            // }
-            // bootsCollection.insertOne(bootData, (err, result) => {
-            //     console.log('Boot Inserted to MongoDB', result)
-            //     // res.send({ result: 200 })
-            // });
-
-            return result
-            // res.json({
-            //     statusCode: 200,
-            //     url: result.Location,
-            //     message: "Success: Image uploaded to S3. Data inserted to mongoDB."
-            // }) 
+             return result
         }
         else {
             res.json({
