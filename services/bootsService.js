@@ -8,8 +8,13 @@ setTimeout(() => {
 
 const getAllBoots = (res) => {
     bootsCollection.find().toArray(function (err, result) {
-        // if (err) throw err;
-        res.send(result)
+        if (result) {
+            res.json({
+                statusCode: 200,
+                data: result,
+                message: "Success: Retrieved all boots"
+            })
+        }
     })
 }
 

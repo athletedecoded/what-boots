@@ -25,8 +25,8 @@ const getTopPreds = (predsArray) => {
         for (var i=0; i<n; i++) {
             j = predsArray.indexOf(sortedPreds[i])
             topPreds[i+1] = {
-                "Label": labels[j],
-                "Prob": predsArray[j]
+                "label": labels[j],
+                "prob": predsArray[j]
             }
         }
     }
