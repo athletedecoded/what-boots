@@ -3,8 +3,8 @@ require('dotenv').config();
 let express = require("express");
 let app = express();
 let mongoConnect = require("./mongoConnect.js")
-let tfModel = require("./model.js")
-const { uploadFile, getFileStream } = require('./s3Connect.js')
+// let tfModel = require("./model.js")
+// const { uploadFile, getFileStream } = require('./s3Connect.js')
 
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);

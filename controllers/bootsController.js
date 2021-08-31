@@ -6,16 +6,17 @@ const getAllBoots = (res) => {
 
 const classifyBoot = async (imgData, res) => {
     // Upload boot image to S3
-    const result = await Service.bootsService.uploadBootImg(imgData,res)
-    const bootData = {
-        url: result.Location,
-        imgID: result.key
-    }
+    const imgResult = await Service.bootsService.uploadBootImg(imgData,res)
     
     // Call TF model using server img path
-    Service.predService.getPreds(bootData.imgID)
+    const predResult = await Service.predService.getPreds(imgResult.key)
 
     // Upload data to mongoDB
+    const bootData = {
+        url: imgResult.Location,
+        imgID: imgResult.key,
+        preds: predResult
+    }
     Service.bootsService.insertBootData(bootData,res)
 }
 

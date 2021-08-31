@@ -4,7 +4,7 @@ const tf = require('@tensorflow/tfjs');
 const tfnode = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 
-const labels = ["Adidas Predator 19","Adidas Predator 20/21", "Nike Tiempo"]
+const LABELS = ["Adidas Predator 19","Adidas Predator 20/21", "Nike Tiempo"]
 
 const loadImage = (path) => {
   const imageBuffer = fs.readFileSync(path);
@@ -15,19 +15,39 @@ const loadImage = (path) => {
   return image;
 }
 
+const getTopPreds = (predsArray) => {
+    var n = 3
+    var labels=LABELS
+
+    let sortedPreds = predsArray.sort().reverse()
+    let topPreds = {};
+    if (labels.length == predsArray.length) {
+        for (var i=0; i<n; i++) {
+            j = predsArray.indexOf(sortedPreds[i])
+            topPreds[i+1] = {
+                "Label": labels[j],
+                "Prob": predsArray[j]
+            }
+        }
+    }
+    else {
+        console.log("Mismatched arrays");
+    }
+    return topPreds;
+}
+
 const imageClassification = async (path) => {
     const image = loadImage(path);
     console.log("Image processed", image)
     const model = await tf.loadLayersModel(process.env.CLF_URL);
     console.log("Model loaded", model.summary())
-    const predsArray = await model.predict(image).data();
-    return predsArray;
+    var predsArray = await model.predict(image).data();
+    // Get top 3 predictions and labels
+    var topPreds = getTopPreds(predsArray)
+    
+    return topPreds;
 }
 
-const predLabels = (labels, predsArray) => {
-    let predictions = {}
-    
-}
 
 module.exports = {
     imageClassification
