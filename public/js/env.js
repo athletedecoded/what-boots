@@ -7,8 +7,8 @@ const uploadBoot = (bootData) => {
         contentType:false,
         processData:false,
         success: (result) => {
-            alert(result);
-            location.reload();
+            console.log(result.preds);
+            // location.reload();
         },
         error: (err) => {
             alert(err.message);

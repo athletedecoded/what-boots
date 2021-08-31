@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 let bootsRoute = require('./routes/boots');
 app.use('/api/boots', bootsRoute)
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3030;
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());

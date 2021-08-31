@@ -1,5 +1,6 @@
 let client = require("../mongoConnect");
 const { uploadFile, getFileStream } = require('../s3Connect')
+
 let bootsCollection;
 setTimeout(() => {
     bootsCollection = client.mongodbClient.db("sit725").collection("queryBoots");
@@ -56,8 +57,6 @@ const insertBootData = (req, res) => {
             }) 
         }
     });
-
-    
 }
 
 module.exports = {

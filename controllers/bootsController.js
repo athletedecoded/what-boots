@@ -18,6 +18,8 @@ const classifyBoot = async (imgData, res) => {
         preds: predResult
     }
     Service.bootsService.insertBootData(bootData,res)
+
+    // Tidy uploads, remove image from temp server storage 
 }
 
 module.exports = {
