@@ -22,26 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-
-// app.post('/api/seed', (req,res) => {
-// 	var newBoot = req.body;
-// 	insertBoot(newBoot,(err,result) => {
-// 		if (err) {
-// 			res.json({
-// 				statusCode: 400,
-// 				message: err
-// 			})
-// 		}
-// 		else {				
-// 			res.json({
-// 				statusCode: 200,
-// 				message: "Success: object added"
-// 			});
-// 		}
-// 	}); 
-// })
-
-
 //socket test
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -53,6 +33,5 @@ io.on('connection', (socket) => {
 
 http.listen(port,()=>{
   console.log("Listening on port ", port);
-//   createCollection('allBoots');
 });
 
