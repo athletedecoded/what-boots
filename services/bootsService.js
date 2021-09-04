@@ -22,7 +22,7 @@ const uploadBootImg = async (req, res) => {
     if(req) {
         // Upload image to S3
         const result = await uploadFile(req);
-        console.log('Boot uploaded to S3', result)
+        console.log('Boot uploaded to S3')
         // If image uploaded to S3
         if(result) {
              return result
