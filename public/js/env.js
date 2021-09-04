@@ -59,8 +59,9 @@ $(document).ready(function(){
   });
 
   $('#resetButton').click(()=>{
-    $("#loading").toggle(false)
-    $('#modal1').modal('open')
+    // $("#loading").toggle(false)
+    // $('#modal1').modal('open')
+    location.reload()
   });
 
   $('.modal').modal();

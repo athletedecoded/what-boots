@@ -19,7 +19,7 @@ const getTopPreds = (predsArray) => {
     var n = 3
     var labels=LABELS
 
-    let sortedPreds = predsArray.sort().reverse()
+    let sortedPreds = predsArray.slice().sort().reverse()
     let topPreds = {};
     if (labels.length == predsArray.length) {
         for (var i=0; i<n; i++) {
@@ -42,9 +42,9 @@ const imageClassification = async (path) => {
     const model = await tf.loadLayersModel(process.env.CLF_URL);
     console.log("Model loaded", model.summary())
     var predsArray = await model.predict(image).data();
-    console.log(predsArray)
     // Get top 3 predictions and labels
     var topPreds = getTopPreds(predsArray)
+    console.log(topPreds)
     
     return topPreds;
 }
