@@ -54,21 +54,22 @@
 
         <div class="container center-align">
             <h1 class="title">What Boots?</h1>
+			<a class="waves-effect waves-light btn click-me-button modal-trigger" id="clickMeButton" data-target="modal1">Upload your Boots</a>
             <div class="row">
                 <p class="flow-text mainText">Top 3 Results</p>
             </div>
 
             <!-- CARDS-->
-            <div class="row" id="top-3">
+            <div class="row" id="top3">
 
                 <!-- BOOTS-->
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator" src="images/boots.jpg">
+                      <img id="boot1" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
-                      <span class="card-title grey-text text-darken-4">Boot 1</span>
+                      <span id="pred1" class="card-title grey-text text-darken-4">Boot 1</span>
                     </div>
                   </div>
                 </div>
@@ -76,10 +77,10 @@
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator" src="images/boots.jpg">
+                      <img id="boot2" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
-                      <span class="card-title grey-text text-darken-4">Boot 1</span>
+                      <span id="pred2" class="card-title grey-text text-darken-4">Boot 2</span>
                     </div>
                   </div>
                 </div>
@@ -87,10 +88,10 @@
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img class="activator" src="images/boots.jpg">
+                      <img id="boot3" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
-                      <span class="card-title grey-text text-darken-4">Boot 1</span>
+                      <span id="pred3" class="card-title grey-text text-darken-4">Boot 3</span>
                     </div>
                   </div>
                 </div>
@@ -98,36 +99,29 @@
             </div>
         </div>
 
-        
-        <!-- <div class="row">
-            <form action="/images/upload" method="post" enctype="multipart/form-data">
-                    <input type="file" accept="image/*" name="img" >
-                    <input type="submit" value="upload">
-            </form>
-        </div> -->
 
         <!-- MODAL -->
         <div id="modal1" class="modal modal-fixed-footer">
-            <div class="row modal-content center-align">
-                <h1>Upload Image</h1>
-                <form class="col s12" action="/what-boots" method="post" enctype="multipart/form-data">
+			<div class="row modal-content center-align">
+				<h1>My Boots</h1>
+				<p>Upload a picture of your boots in .jpg or .png</p>
+				<!-- <form class="col s12" action="api/boots" method="post" enctype="multipart/form-data"> -->
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="file" accept=".jpg,.png" id="bootImg" >
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<a class="waves-effect waves-light btn" id="formSubmit">upload</a>
+							<!-- <input class="waves-effect waves-light btn" type="submit" value="upload"> -->
+						</div>
+					</div>
 
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="file" accept="image/*" name="img" >
-                        <label for="password">Password</label>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="input-field col s12 center-align">
-                        <input type="submit" value="upload">
-                    </div>
-                </div>
-
-                </form>
-            </div>
-        </div>       
+				</form>
+			</div>
+        </div>
         
     
     </main>

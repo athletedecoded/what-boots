@@ -2,12 +2,14 @@ require('dotenv').config();
 
 let express = require("express");
 let app = express();
+let http = require('http').createServer(app);
+let io = require('socket.io')(http);
+
 let mongoConnect = require("./mongoConnect.js")
 // let tfModel = require("./model.js")
 // const { uploadFile, getFileStream } = require('./s3Connect.js')
 
-let http = require('http').createServer(app);
-let io = require('socket.io')(http);
+
 const bodyParser = require('body-parser');
 
 let bootsRoute = require('./routes/boots');
@@ -46,10 +48,6 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
-  setInterval(()=>{
-    socket.emit('number', parseInt(Math.random()*10));
-  }, 1000);
-
 });
 
 
@@ -58,5 +56,3 @@ http.listen(port,()=>{
 //   createCollection('allBoots');
 });
 
-//this is only needed for Cloud foundry 
-require("cf-deployment-tracker-client").track();
