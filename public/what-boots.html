@@ -54,8 +54,8 @@
 
         <div class="container center-align">
             <h1 class="title">What Boots?</h1>
-			<a class="waves-effect waves-light btn click-me-button modal-trigger" id="clickMeButton" data-target="modal1">Upload your Boots</a>
-            <div class="row">
+			<a class="waves-effect waves-light btn btn-large modal-trigger" id="uploadButton" data-target="modal1">Upload your Boots</a>
+			<div class="row">
                 <p class="flow-text mainText">Top 3 Results</p>
             </div>
 
@@ -66,10 +66,11 @@
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img id="boot1" class="activator" src="images/q.jpg">
+                      <img id="img1" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
-                      <span id="pred1" class="card-title grey-text text-darken-4">Boot 1</span>
+                      <span id="boot1" class="card-title grey-text text-darken-4">Boot 1</span>
+                      <span id="pred1" class="card-title grey-text text-darken-4">?? %</span>
                     </div>
                   </div>
                 </div>
@@ -77,9 +78,10 @@
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img id="boot2" class="activator" src="images/q.jpg">
+                      <img id="img2" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
+                      <span id="boot2" class="card-title grey-text text-darken-4">Boot 2</span>
                       <span id="pred2" class="card-title grey-text text-darken-4">Boot 2</span>
                     </div>
                   </div>
@@ -88,13 +90,17 @@
                 <div class="col s12 l4 center-align">
                   <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
-                      <img id="boot3" class="activator" src="images/q.jpg">
+                      <img id="img3" class="activator" src="images/q.jpg">
                     </div>
                     <div class="card-content">
+                      <span id="boot3" class="card-title grey-text text-darken-4">Boot 3</span>
                       <span id="pred3" class="card-title grey-text text-darken-4">Boot 3</span>
                     </div>
                   </div>
                 </div>
+
+				<a class="waves-effect waves-light btn btn-large" id="resetButton">Try Another Pair</a>
+
                 
             </div>
         </div>
@@ -118,9 +124,18 @@
 							<!-- <input class="waves-effect waves-light btn" type="submit" value="upload"> -->
 						</div>
 					</div>
-
 				</form>
+				
+				<div id="loading">
+					<h4>Calculating</h4>
+					<div class="col s6 offset-s3 center-align progress">
+						<div class="indeterminate"></div>
+					</div>
+				</div>
+				
 			</div>
+
+
         </div>
         
     

@@ -21,36 +21,20 @@ const uploadBoot = (bootData) => {
 const showResults = (preds) => {
     Object.entries(preds).forEach(entry => {
         let [key, val] = entry
-        console.log(entry)
-        let card = '<div class="col s12 l4 center-align">'+
-            '<div class="card">' +
-            '<div class="card-image waves-effect waves-block waves-light">' +
-                '<img class="activator" src="">' +
-            '</div>' +
-            '<div class="card-content">' +
-                '<span class="card-title grey-text text-darken-4">'+ val.label +'</span>' +
-                '<span class="card-title grey-text text-darken-4">'+ round(val.prob*100,1)% +'</span>' +
-            '</div>' +
-            '</div>'+
-        '</div>'
-        
-        $('#top3').append(card)
+        console.log(key)
+
+        let imgID = '#img'+key
+        let bootID = '#boot'+key
+        let predID = '#pred'+key
+        let imgURL = 'images/' + val.label + '.jpg'
+        $(imgID).attr("src", imgURL)
+        $(bootID).html(val.label)
+        $(predID).html(Math.round(val.prob*100) + "%")
 
     })
+    $("#resetButton").toggle(true)
+    $("#uploadButton").toggle(false)
 }
-
-// for (let i = 1; i < 4; i++) {
-//     let imgID = `boot${i}`
-//     console.log(imgID)
-//     let predID = `pred${i}`
-//     console.log(predID)
-//     $(`#${imgID}`).src = "images/boots.jpg"
-//     $(`#${predID}`).innerHTML = `Boot${i}`
-// }
-
-// res1 = preds[1]
-// res2 = preds[2]
-// console.log(preds[3])
 
 const submitForm = () => {
     let bootImg = $('#bootImg')[0].files[0];
@@ -66,9 +50,17 @@ let socket = io();
 
 $(document).ready(function(){
   console.log('Ready');
+  $("#resetButton").toggle(false)
+  $("#loading").toggle(false)
 
   $('#formSubmit').click(()=>{
     submitForm();
+    $("#loading").toggle(true)
+  });
+
+  $('#resetButton').click(()=>{
+    $("#loading").toggle(false)
+    $('#modal1').modal('open')
   });
 
   $('.modal').modal();
