@@ -58,6 +58,7 @@ const insertBootData = (req, res) => {
             res.json({
                 statusCode: 200,
                 preds: bootData.preds,
+                imgURL: bootData.url,
                 message: "Success: Image uploaded to S3. Data inserted to mongoDB."
             }) 
         }

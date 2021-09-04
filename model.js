@@ -38,10 +38,11 @@ const getTopPreds = (predsArray) => {
 
 const imageClassification = async (path) => {
     const image = loadImage(path);
-    console.log("Image processed", image)
+    console.log("Image processed to tensor")
     const model = await tf.loadLayersModel(process.env.CLF_URL);
-    console.log("Model loaded", model.summary())
+    // console.log("Model loaded", model.summary())
     var predsArray = await model.predict(image).data();
+    console.log(predsArray)
     // Get top 3 predictions and labels
     var topPreds = getTopPreds(predsArray)
     console.log(topPreds)

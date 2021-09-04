@@ -8,7 +8,7 @@ const uploadBoot = (bootData) => {
         processData:false,
         success: (result) => {
             $('#modal1').modal('close')
-            console.log(result.preds);
+            $('#queryBoot').attr("src", result.imgURL).toggle(true);
             showResults(result.preds);
         },
         error: (err) => {
@@ -52,6 +52,7 @@ $(document).ready(function(){
   console.log('Ready');
   $("#resetButton").toggle(false)
   $("#loading").toggle(false)
+  $("#queryBoot").toggle(false)
 
   $('#formSubmit').click(()=>{
     submitForm();
@@ -59,8 +60,6 @@ $(document).ready(function(){
   });
 
   $('#resetButton').click(()=>{
-    // $("#loading").toggle(false)
-    // $('#modal1').modal('open')
     location.reload()
   });
 
