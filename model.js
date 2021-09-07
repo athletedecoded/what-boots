@@ -39,8 +39,7 @@ const getTopPreds = (predsArray) => {
 const imageClassification = async (path) => {
     const image = loadImage(path);
     console.log("Image processed to tensor")
-    const model = await tf.loadLayersModel("./model/model.json");
-    // const model = await tf.loadLayersModel(process.env.CLF_URL);
+    const model = await tf.loadLayersModel(process.env.CLF_URL);
     // console.log("Model loaded", model.summary())
     var predsArray = await model.predict(image).data();
     console.log(predsArray)
