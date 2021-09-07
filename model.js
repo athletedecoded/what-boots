@@ -4,7 +4,8 @@ const tf = require('@tensorflow/tfjs');
 const tfnode = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 
-const LABELS = ["Adidas Predator 19","Adidas Predator 20-21", "Nike Tiempo Legend"]
+// const LABELS = ["Adidas Predator 19","Adidas Predator 20-21", "Nike Tiempo Legend"]
+const LABELS = ["Adidas Copa","Adidas Predator Mutator-Freak","Adidas Predator 19","Nike Mercurial Superfly","Nike Tiempo Legend"]
 
 const loadImage = (path) => {
   const imageBuffer = fs.readFileSync(path);

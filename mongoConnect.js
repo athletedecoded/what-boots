@@ -16,13 +16,13 @@ mongodbClient.connect((err,db) => {
   }
 });
 
-const insertBoot = (boot, callback) => {
-  	bootsCollection.insert(boot, callback);
-}
+// const insertBoot = (boot, callback) => {
+//   	bootsCollection.insert(boot, callback);
+// }
 
-const getAllBoots = (callback) => {
-  	bootsCollection.find({}).toArray(callback);
-}
+// const getAllBoots = (callback) => {
+//   	bootsCollection.find({}).toArray(callback);
+// }
 
 
 exports.mongodbClient = mongodbClient;

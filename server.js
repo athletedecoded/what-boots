@@ -6,9 +6,6 @@ let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
 let mongoConnect = require("./mongoConnect.js")
-// let tfModel = require("./model.js")
-// const { uploadFile, getFileStream } = require('./s3Connect.js')
-
 
 const bodyParser = require('body-parser');
 
