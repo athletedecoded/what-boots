@@ -4,7 +4,6 @@ const tf = require('@tensorflow/tfjs');
 const tfnode = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 
-// const LABELS = ["Adidas Predator 19","Adidas Predator 20-21", "Nike Tiempo Legend"]
 const LABELS = ["Adidas Copa","Adidas Predator Mutator-Freak","Adidas Predator 19","Nike Mercurial Superfly","Nike Tiempo Legend"]
 
 const loadImage = (path) => {
@@ -40,7 +39,8 @@ const getTopPreds = (predsArray) => {
 const imageClassification = async (path) => {
     const image = loadImage(path);
     console.log("Image processed to tensor")
-    const model = await tf.loadLayersModel(process.env.CLF_URL);
+    const model = await tf.loadLayersModel("./model/model.json");
+    // const model = await tf.loadLayersModel(process.env.CLF_URL);
     // console.log("Model loaded", model.summary())
     var predsArray = await model.predict(image).data();
     console.log(predsArray)
