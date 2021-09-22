@@ -13,16 +13,8 @@ mongodbClient.connect((err,db) => {
   else {
     console.log("DB error", err);
     process.exit(1);
-  }
+  };
 });
-
-// const insertBoot = (boot, callback) => {
-//   	bootsCollection.insert(boot, callback);
-// }
-
-// const getAllBoots = (callback) => {
-//   	bootsCollection.find({}).toArray(callback);
-// }
 
 
 exports.mongodbClient = mongodbClient;

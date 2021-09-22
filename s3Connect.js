@@ -11,7 +11,7 @@ const s3 = new S3 ({
     region,
     accessKeyId,
     secretAccessKey
-})
+});
 
 // Upload file to S3
 function uploadFile(file) {
@@ -21,7 +21,7 @@ function uploadFile(file) {
         Bucket: bucketName,
         Body: fileStream,
         Key: file.filename
-    }
+    };
     return s3.upload(uploadParams).promise();
 }
 
@@ -31,9 +31,9 @@ function getFileStream(fileKey) {
         Key: fileKey,
         Bucket: bucketName
     }
-    return s3.getObject(downloadParams).createReadStream()
-}
+    return s3.getObject(downloadParams).createReadStream();
+};
 
 // Exports
-exports.getFileStream = getFileStream
-exports.uploadFile = uploadFile
+exports.getFileStream = getFileStream;
+exports.uploadFile = uploadFile;

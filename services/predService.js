@@ -6,14 +6,14 @@ const unlinkFile = util.promisify(fs.unlink);
 
 const getPreds = async (imgID, res) => {
     if(imgID) {
-        let imgPath = path.join(__dirname,'../public/uploads',imgID)
+        let imgPath = path.join(__dirname,'../public/uploads',imgID);
         
         // Send req (image path) to TF model endpoint
         const preds = imageClassification(imgPath);
+        // Tidy uploads, remove image from temp server storage  
+        await unlinkFile(imgPath);
 
-        await unlinkFile(imgPath)
-
-        return preds
+        return preds;
     }
 }
 

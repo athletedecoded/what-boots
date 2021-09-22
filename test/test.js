@@ -34,14 +34,14 @@ describe("Check GET /api/boots", function() {
     it("check predictions includes a label as a string", function(done) {
         request(url, function(error, response, body) {
             body = JSON.parse(body)
-            expect(body.data[0].preds[1].Label).to.be.a('string');
+            expect(body.data[0].preds[1].label).to.be.a('string');
             done()
           });
     });
     it("check predictions includes a probability as a float", function(done) {
         request(url, function(error, response, body) {
             body = JSON.parse(body)
-            expect(body.data[0].preds[1].Prob).to.be.a('number');
+            expect(body.data[0].preds[1].prob).to.be.a('number');
             done()
           });
     });

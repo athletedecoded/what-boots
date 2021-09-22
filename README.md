@@ -1,30 +1,39 @@
-## Dependencies ##
-* Jquery (CDN)
-* Materialize (CDN) 
-* Socket IO for real time comunications
-* nodemon
-* body-parser
-* multer
-* mongodb
-* aws-sdk for S3 image storage
+## Welcome to What Boots ##
+What Boots is a nodeJS application which can predict the brand and model of your football boots, using a custom built image classifier (Tensorflow JS).
 
+Simply upload your image as .jpg or .png and wait **patiently** for the top 3 results.
+
+What Boots is currently trained on Adidas and Nike models.
+
+---
+## Terms of Use ##
+By using this app, you agree to your image upload and results being stored in our database (Amazon S3 and MongoDB).
+
+---
 ## Run ##
-Install package.json packages using
+1. Clone repo 
+    
+    https://github.com/athletedecoded/sit725-2021-t2-prac9.git
+
+2. Open locally and copy .env file to root path
+
+3. Open terminal and install package.json dependencies using
 
     npm install
 
-After installing, run the server using
+4. Launch the node server by running
 
     npm start
+    or 
+    npm run dev (to launch with nodemon in development)
 
-If instead, you get something like the following, someone is already
-using the default port of 8080:
+NB: If instead, you get something like the following, the default port is already in use:
 
     Server running at http://127.0.0.1:8080/
 
     events.js:72
         throw er; // Unhandled 'error' event
-                  ^
+                ^
     Error: listen EADDRINUSE
         at errnoException (net.js:901:11)
         at Server._listen2 (net.js:1039:14)
@@ -32,110 +41,46 @@ using the default port of 8080:
         at Server.listen (net.js:1127:5)
         ...
 
-Once the server is running, test it by visiting the following URL in your
+In this case, update the server.js file to an available port (try 3030,5000,5050) by modifying line 15
+
+    eg. var port = process.env.PORT || 3030;
+
+5. Successful connection is indicated by the following terminal messages
+
+    Listening on port  8080
+    MongoDB Connected...
+
+6. Once the server is running, test it by visiting the following URL in your
 browser:
 
     http://localhost:8080/
 
+7. With the server running, test cases can be run in a 2nd terminal using
 
-
-files in this repository
---------------------------------------------------------------------------------
-
-`server.js`
-
-The server written with node.js.  This server was adapted from the
-*[example provided in the node docs](http://nodejs.org/api/synopsis.html)*.
-
-The difference is that the port, binding host, and url are determined
-via the [`cfenv` package](https://www.npmjs.org/package/cfenv).  This will
-return appropriate values both when running in Cloud Foundry and when running
-locally.
+    npm run test
+---
+## Dependencies ##
+* socket.io for real time comunications
+* body-parser
+* multer for image processing
+* mongodb
+* aws-sdk for S3 image storage
+* tfjs, tfjs-node
+* chai, mocha for testing frameworks
 
 ---
+## Files in this Repository ##
 
-`.cfignore`
+* `server.js` -- application entry point written with node.js
+* `/preprocessing` -- python files used for model development (for informational purposes) 
+* `/tfjs` -- tensorflowJS model files
+* `model.js` -- configuration and functions for image classification using the tensorflow model
+* `mongoConnect.js` -- configuration file to connect to MongoDB
+* `s3Connect.js` -- configuration file to connect to Amazon S3 Bucket Storage
 
-List of file patterns that should **NOT** be uploaded to Bluemix.
-
-See the Cloud Foundry doc
-*[Prepare to Deploy an Application](http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html)*
-for more information.
-
-In this case, the contents of the file are:
-
-    node_modules
-
-This indicates the node modules you installed with `npm install` will **NOT** be
-uploaded to Bluemix.  When your app is "staged" (ie, built on Bluemix during
-`cf push`), an
-`npm install` will be run there to install the required modules.  By avoiding
-sending your node modules when you push your app, your app will be uploaded
-quicker than if you **HAD** sent the modules.  But you can send the modules you have installed
-if you like; just delete the `.cfignore` file.
-
----
-
-`.gitignore`
-
-List of file patterns that should **NOT** be stored in git.  If you aren't using
-git, you don't need this file.  And the contents are personal preference.
-
-See the npm google groups topic
-*['node_modules in git' from FAQ](https://groups.google.com/forum/#!topic/npm-/8SRXhD6uMmk)*
-for discussion.
-
----
-
-`LICENSE`
-
-Accessible under the [MIT License](./LICENSE).
-
----
-
-`manifest.yml`
-
-This file contains information that's used when you `cf push` the application.
-
-See the Cloud Foundry doc
-*[Deploying with Application Manifests](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)*
-for more information.
-
----
-
-`package.json`
-
-Standard package.json file for node packages.  You will need this file for two
-reasons:
-
-* identify your node package dependencies during `npm install`
-* identify to Bluemix that this directory contains a node.js application
-
-See the npm doc
-*[package.json](https://npmjs.org/doc/json.html)*
-for more information.
-
----
-
-`Procfile`
-
-Used to indicate the command to start the server.
-
-See the Cloud Foundry doc
-*[Tips for Node.js Applications](http://docs.cloudfoundry.org/buildpacks/node/node-tips.html)*
-and the Heroku doc
-*[Process Types and the Procfile](https://devcenter.heroku.com/articles/procfile)*
-for more information.
-
-In this case, the file has a single line:
-
-    web: node server
-
-This indicates that the command `node server` should be run when the app is
-started.
-
----
-
-`README.md`
-
-This file!
+* `package.json` -- node package dependencies, installed with `npm install`
+* `.gitignore`
+* `LICENSE` -- this application is accessible under the [MIT License](./LICENSE)
+* `manifest.yml`
+* `Procfile` -- specifies the command `node server` should be run when the app is started.
+* `README.md` -- this file!
