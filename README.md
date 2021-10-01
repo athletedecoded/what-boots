@@ -24,7 +24,9 @@ By using this app, you agree to your image upload and results being stored in ou
 4. Launch the node server by running
 
     npm start
+
     or 
+
     npm run dev (to launch with nodemon in development)
 
 NB: If instead, you get something like the following, the default port is already in use:
@@ -48,6 +50,7 @@ In this case, update the server.js file to an available port (try 3030,5000,5050
 5. Successful connection is indicated by the following terminal messages
 
     Listening on port  8080
+    
     MongoDB Connected...
 
 6. Once the server is running, test it by visiting the following URL in your
