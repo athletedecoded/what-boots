@@ -4,6 +4,8 @@ const tf = require('@tensorflow/tfjs');
 const tfnode = require('@tensorflow/tfjs-node');
 const fs = require('fs');
 
+const CLF_URL='https://raw.githubusercontent.com/athletedecoded/sit725-2021-t2-prac9/master/tfjs/model.json'
+
 const LABELS = ["Adidas Copa","Adidas Predator Mutator-Freak","Adidas Predator 19","Nike Mercurial Superfly","Nike Tiempo Legend"]
 
 const loadImage = (path) => {
@@ -41,7 +43,7 @@ const imageClassification = async (path) => {
     const image = loadImage(path);
     console.log("Image processed to tensor");
     console.log("Loading model...");
-    const model = await tf.loadLayersModel(process.env.CLF_URL);
+    const model = await tf.loadLayersModel(CLF_URL);
     // console.log(model.summary())
     var predsArray = await model.predict(image).data();
     // console.log(predsArray);

@@ -1,0 +1,34 @@
+version: '3.8'
+
+secrets:
+  aws_region:
+    file: ./docker_config/AWS_BUCKET_REGION.txt
+  aws_access_key:
+    file: ./docker_config/AWS_ACCESS_KEY.txt
+  aws_secret:
+    file: ./docker_config/AWS_SECRET_KEY.txt
+  mongo_uri:
+    file: ./docker_config/MONGO_URI.txt
+
+services:
+  whatboots:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: whatboots
+    container_name: whatboots
+    env_file: .env
+    environment:
+      - AWS_BUCKET_REGION_FILE=/run/secrets/aws_region
+      - AWS_ACCESS_KEY_FILE=/run/secrets/aws_access_key
+      - AWS_SECRET_KEY_FILE=/run/secrets/aws_secret
+      - MONGO_URI_FILE=/run/secrets/mongo_uri
+    secrets:
+      - aws_region
+      - aws_access_key
+      - aws_secret
+      - mongo_uri
+
+    ports:
+      - "8080:8080"
+
