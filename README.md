@@ -13,7 +13,7 @@ By using this app, you agree to your image upload and results being stored in ou
 ## Run ##
 1. Clone repo 
     
-    https://github.com/athletedecoded/sit725-2021-t2-prac9.git
+    https://github.com/athletedecoded/what-boots.git
 
 2. Open locally and copy .env file to root path
 
@@ -62,11 +62,17 @@ browser:
 
     npm run test
 ---
+## Endpoints ##
+* GET /api/boots -- returns all boots in DB
+* POST /api/boots -- process boot image (req.file) and return predictions
+
+## Cloud Function ##
+* GET https://cb2fc2b4.au-syd.apigw.appdomain.cloud/api/v1/url?label= -- takes a label query parameter and returns webshop URL
+
 ## Dependencies ##
 * socket.io for real time comunications
-* body-parser
 * multer for image processing
-* mongodb
+* mongodb, mongoose for database
 * aws-sdk for S3 image storage
 * tfjs, tfjs-node
 * chai, mocha for testing frameworks
@@ -75,7 +81,7 @@ browser:
 ## Files in this Repository ##
 
 * `server.js` -- application entry point written with node.js
-* `/preprocessing` -- python files used for model development (for informational purposes) 
+* `/preprocessing` -- python files used for model development (for information purposes) 
 * `/tfjs` -- tensorflowJS model files
 * `model.js` -- configuration and functions for image classification using the tensorflow model
 * `mongoConnect.js` -- configuration file to connect to MongoDB
@@ -87,3 +93,7 @@ browser:
 * `manifest.yml`
 * `Procfile` -- specifies the command `node server` should be run when the app is started.
 * `README.md` -- this file!
+
+* `docker-compose.yml` -- compose configurations for docker application
+* `Dockerfile` -- Docker image build configurations
+* `.dockerignore` 
