@@ -19,15 +19,15 @@ By using this app, you agree to your image upload and results being stored in ou
 
 3. Open terminal and install package.json dependencies using
 
-    npm install
+    `npm install`
 
 4. Launch the node server by running
 
-    npm start
+   ` npm start`
 
     or 
 
-    npm run dev (to launch with nodemon in development)
+    `npm run dev` (to launch with nodemon in development)
 
 NB: If instead, you get something like the following, the default port is already in use:
 
@@ -60,7 +60,7 @@ browser:
 
 7. With the server running, test cases can be run in a 2nd terminal using
 
-    npm run test
+    `npm run test`
 ---
 ## Endpoints ##
 * GET /api/boots -- returns all boots in DB
