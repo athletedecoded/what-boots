@@ -5,8 +5,6 @@ let app = express();
 let http = require('http').createServer(app);
 let io = require('socket.io')(http);
 
-// let mongoConnect = require("./mongoConnect.js")
-
 const bodyParser = require('body-parser');
 
 let bootsRoute = require('./routes/boots');

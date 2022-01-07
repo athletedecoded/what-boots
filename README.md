@@ -1,74 +1,45 @@
 ## Welcome to What Boots ##
-What Boots is a nodeJS application which can predict the brand and model of your football boots, using a custom built image classifier (Tensorflow JS).
+What Boots predicts the brand and model of your football boots, using a custom image classifier model.
 
 Simply upload your image as .jpg or .png and wait **patiently** for the top 3 results.
 
-What Boots is currently trained on Adidas and Nike models.
+What Boots is currently trained on the following models:
+* Adidas -- Copa, Predator Mutator-Freak, Predator 19
+* Nike -- Mercurial Superfly, Tiempo Legend
+
+The app is built on NodeJS/Express with a Model-View-Controller (MVC) architecture. The custom classifier is pretrained on Keras and and built on TensorflowJS. MongoDB and AmazonS3 (image storage) are used as the database/storage. Multer is used for server-side image processing.
+
+This project was developed for SIT725: Software Engineering at Deakin University. 
+
+Check it out: [What Boots on Heroku](https://what-boots.herokuapp.com/)
 
 ---
-## Terms of Use ##
-By using this app, you agree to your image upload and results being stored in our database (Amazon S3 and MongoDB).
+## What I Learnt ##
+
+* Deploying a classifier model as a NodeJS/Express app
+* Server-side image handling and uploading to Amazon S3
+* Database management with MongoDB
+* MVC architecture principles
+* CI/CD deployment in Heroku
+
+**Biggest Challenges**
+* Automating image scraping to build a sufficent dataset
+* Training a custom image classifier in Keras for TensorflowJS compatability
+
+**Future Improvements**
+* Improve model prediction speed -- currenty slow downloading model from cloud
+* Retrain classifier on more boot brands and models
 
 ---
-## Run ##
-1. Clone repo 
-    
-    https://github.com/athletedecoded/what-boots.git
+### Terms of Use ###
+By using this app, you agree to your image upload and prediction results being stored in our database (Amazon S3 and MongoDB).
 
-2. Open locally and copy .env file to root path
-
-3. Open terminal and install package.json dependencies using
-
-    `npm install`
-
-4. Launch the node server by running
-
-   ` npm start`
-
-    or 
-
-    `npm run dev` (to launch with nodemon in development)
-
-NB: If instead, you get something like the following, the default port is already in use:
-
-    Server running at http://127.0.0.1:8080/
-
-    events.js:72
-        throw er; // Unhandled 'error' event
-                ^
-    Error: listen EADDRINUSE
-        at errnoException (net.js:901:11)
-        at Server._listen2 (net.js:1039:14)
-        at listen (net.js:1061:10)
-        at Server.listen (net.js:1127:5)
-        ...
-
-In this case, update the server.js file to an available port (try 3030,5000,5050) by modifying line 15
-
-    eg. var port = process.env.PORT || 3030;
-
-5. Successful connection is indicated by the following terminal messages
-
-    Listening on port  8080
-    
-    MongoDB Connected...
-
-6. Once the server is running, test it by visiting the following URL in your
-browser:
-
-    http://localhost:8080/
-
-7. With the server running, test cases can be run in a 2nd terminal using
-
-    `npm run test`
 ---
 ## Endpoints ##
 * GET /api/boots -- returns all boots in DB
 * POST /api/boots -- process boot image (req.file) and return predictions
 
-## Cloud Function ##
-* GET https://cb2fc2b4.au-syd.apigw.appdomain.cloud/api/v1/url?label= -- takes a label query parameter and returns webshop URL
-
+---
 ## Dependencies ##
 * socket.io for real time comunications
 * multer for image processing
@@ -76,12 +47,58 @@ browser:
 * aws-sdk for S3 image storage
 * tfjs, tfjs-node
 * chai, mocha for testing frameworks
+* nodemon for dev
+---
+## Run Locally ##
+1. Clone repo 
+    ```
+    https://github.com/athletedecoded/what-boots.git
+    ```
 
+2. Open locally and copy .env file to root path
+
+3. Open terminal and install package.json dependencies using
+    ```
+    npm install
+    ```
+
+4. Launch the node server by running
+    ```
+   npm start
+   ```
+
+5. To run the developer server, ensure nodemon is installed
+    ```
+    npm install -g nodemon
+    ```
+    Then
+    ```
+    npm run dev
+    ```
+
+6. Successful connection is indicated by the following terminal messages
+    ```
+    Listening on port  8080
+    MongoDB Connected...
+    ```
+    NB: If you get a port error, update the server.js file to an available port (try 3030,5000,5050) by modifying line 15
+    eg. `var port = process.env.PORT || 3030;`
+
+7. Once the server is running, test it by visiting the following URL in your
+browser:
+    ```
+    http://localhost:8080/
+    ```
+
+8. With the server running, test cases can be run in a 2nd terminal using
+    ```
+    npm run test
+    ```
 ---
 ## Files in this Repository ##
 
 * `server.js` -- application entry point written with node.js
-* `/preprocessing` -- python files used for model development (for information purposes) 
+* `/classifier` -- python files used for model development
 * `/tfjs` -- tensorflowJS model files
 * `model.js` -- configuration and functions for image classification using the tensorflow model
 * `mongoConnect.js` -- configuration file to connect to MongoDB

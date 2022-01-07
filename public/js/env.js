@@ -10,7 +10,6 @@ const uploadBoot = (bootData) => {
             $('#modal1').modal('close')
             $('#queryBoot').attr("src", result.imgURL).toggle(true);
             showResults(result.preds);
-            getURL(result.preds['1']);
         },
         error: (err) => {
             alert(err.message);
@@ -32,26 +31,8 @@ const showResults = (preds) => {
 
     })
     $("#resetButton").toggle(true)
-    $("#shopNow").toggle(true)
     $("#uploadButton").toggle(false)
 }
-
-const getURL = (topBoot) => {
-    $.ajax({
-        enctype:'application/json',
-        url: 'https://cb2fc2b4.au-syd.apigw.appdomain.cloud/api/v1/url',
-        data: { label: topBoot.label} ,
-        type: 'GET',
-        success: (result) => {
-            $("#shopNow").attr('href',result.data)
-        },
-        error: (err) => {
-            alert(err.message);
-            // location.reload();
-        }
-    })
-}
-
 
 const submitForm = () => {
     let bootImg = $('#bootImg')[0].files[0];
