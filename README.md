@@ -11,8 +11,6 @@ The app is built on NodeJS/Express with a Model-View-Controller (MVC) architectu
 
 This project was developed for SIT725: Software Engineering at Deakin University. 
 
-Check it out: [What Boots on Heroku](https://what-boots.herokuapp.com/)
-
 ---
 ## What I Learnt ##
 
